@@ -28,10 +28,13 @@ public class userController {
         return userRepo.findAll();
     }
 
-    @GetMapping("/user/search/{userId}")
+    // This needs to change to chose all users as a search.
+    @GetMapping("/user/search/{loginId}")
     public user getUserByLoginId(@PathVariable String loginId){
         return userRepo.findUserByLoginId(loginId);
     }
+
+
 
 
 }

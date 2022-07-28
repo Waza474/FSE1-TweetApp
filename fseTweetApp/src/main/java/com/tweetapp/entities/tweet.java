@@ -19,9 +19,12 @@ public class tweet {
 
     private List<tweet> replies;
 
-    public tweet(String content, String tag) {
+    private String ownerId;
+
+    public tweet(String content, String tag, String ownerId) {
         this.content = content;
         this.tag = tag;
+        this.ownerId = ownerId;
         likes = 0;
     }
 
@@ -55,5 +58,13 @@ public class tweet {
 
     public void setReplies(List<tweet> replies) {
         this.replies = replies;
+    }
+
+    public String getOwner() {
+        return ownerId;
+    }
+
+    public void setOwner(String ownerId) {
+        this.ownerId = ownerId;
     }
 }
