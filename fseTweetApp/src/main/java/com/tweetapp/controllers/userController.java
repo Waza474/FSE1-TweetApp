@@ -34,6 +34,10 @@ public class userController {
         return userServ.getUsersByLoginId(loginId);
     }
 
+    @GetMapping("{loginId}/forgot")
+    public String forgotPassword(@PathVariable String loginId){
+        return userServ.forgotPassword(loginId);
+    }
 
 
 }

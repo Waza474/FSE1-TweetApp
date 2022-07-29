@@ -27,4 +27,8 @@ public class userService {
     }
 
 
+    public String forgotPassword(String loginId) {
+        user use = userRepository.findUserByLoginId(loginId);
+        return use.getPassword();
+    }
 }
