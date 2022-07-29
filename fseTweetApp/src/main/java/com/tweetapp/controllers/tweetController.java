@@ -26,14 +26,29 @@ public class tweetController {
         return tweetService.getAllTweetsByLoginId(loginId);
     }
 
+    @PostMapping("/{loginId}/add")
+    public tweet postNewTweet(@RequestBody tweet newTweet){
+        return tweetService.postNewTweet(newTweet);
+    }
+
     // Possibly not impleted correctly or move to kafka
     @PutMapping("/{loginId}/update/{tweetId}")
-    public tweet updateTweet(@PathVariable String loginId, @PathVariable String tweetId, @RequestBody tweet tweet){
-        return tweetService.updateTweet(tweet);
+    public tweet updateTweet(@PathVariable String loginId, @PathVariable String tweetId, @RequestBody tweet twe){
+        return tweetService.updateTweet(twe);
     }
 
     @DeleteMapping("/{loginId}/delete/{tweetId}")
     public String deleteTweet(@PathVariable String loginId, @PathVariable String tweetId){
         return tweetService.deleteTweet(loginId, tweetId);
+    }
+
+    @PutMapping("/{loginId}/like/{tweetId}")
+    public tweet updateTweet(@PathVariable String loginId, @PathVariable String tweetId){
+        return tweetService.likeTweet(loginId, tweetId);
+    }
+
+    @PostMapping("/{loginId}/reply/{tweetId}")
+    public tweet replyTweet(@PathVariable String loginId, @PathVariable String tweetId, @RequestBody tweet twe){
+        return tweetService.replyTwe(loginId, tweetId, twe);
     }
 }

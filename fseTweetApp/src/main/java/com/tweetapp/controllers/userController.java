@@ -30,8 +30,8 @@ public class userController {
 
     // This needs to change to chose all users as a search.
     @GetMapping("/user/search/{loginId}")
-    public user getUserByLoginId(@PathVariable String loginId){
-        return userServ.getUserByLoginId(loginId);
+    public List<user> getUsersByLoginId(@PathVariable String loginId){
+        return userServ.getUsersByLoginId(loginId);
     }
 
 

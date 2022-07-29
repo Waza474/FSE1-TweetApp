@@ -60,6 +60,10 @@ public class tweet {
         this.replies = replies;
     }
 
+    public void addReply(tweet reply) {
+        replies.add(reply);
+    }
+
     public String getOwner() {
         return ownerId;
     }

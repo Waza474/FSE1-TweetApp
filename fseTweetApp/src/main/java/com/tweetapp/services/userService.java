@@ -22,7 +22,9 @@ public class userService {
         return userRepository.findAll();
     }
 
-    public user getUserByLoginId(String loginId){
-        return userRepository.findUserByLoginId(loginId);
+    public List<user> getUsersByLoginId(String loginId){
+        return userRepository.findByLoginIdIsLike(loginId);
     }
+
+
 }

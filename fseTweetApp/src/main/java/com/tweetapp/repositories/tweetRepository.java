@@ -13,6 +13,6 @@ public interface tweetRepository extends MongoRepository<tweet, String> {
 
     List<tweet> findByOwnerId(String ownerId);
 
-    List<tweet> findByOwnerIdAndId(String ownerId, String id);
+    tweet findByOwnerIdAndId(String ownerId, String id);
 
 }
