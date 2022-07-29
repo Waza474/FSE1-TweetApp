@@ -11,4 +11,8 @@ public interface tweetRepository extends MongoRepository<tweet, String> {
 
     tweet getTweetById(String id);
 
+    List<tweet> findByOwnerId(String ownerId);
+
+    List<tweet> findByOwnerIdAndId(String ownerId, String id);
+
 }

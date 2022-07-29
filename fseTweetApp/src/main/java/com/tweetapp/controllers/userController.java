@@ -12,28 +12,27 @@ import java.util.List;
 @RequestMapping("api/v1.0/tweets")
 public class userController {
 
-    //@Autowired
-    //userService userServ;
-
     @Autowired
-    userRepository userRepo;
+    userService userServ;
+
+    //@Autowired
+    //userRepository userRepo;
 
     @PostMapping("/register")
     public user registerUser(@RequestBody user newUser){
-        return userRepo.save(newUser);
+        return userServ.registerUser(newUser);
     }
 
     @GetMapping("/users/all")
     public List<user> getALlUsers() {
-        return userRepo.findAll();
+        return userServ.getALlUsers();
     }
 
     // This needs to change to chose all users as a search.
     @GetMapping("/user/search/{loginId}")
     public user getUserByLoginId(@PathVariable String loginId){
-        return userRepo.findUserByLoginId(loginId);
+        return userServ.getUserByLoginId(loginId);
     }
-
 
 
 
