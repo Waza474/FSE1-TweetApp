@@ -40,7 +40,7 @@ public class userController {
     }
 
     // Login, is a get, not sure what it does yet
-    @GetMapping("login")
+    @GetMapping("/login")
     public String login(){
         return "You have Logged In";
     }

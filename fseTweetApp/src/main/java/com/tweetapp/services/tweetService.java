@@ -73,6 +73,7 @@ public class tweetService {
         tweet main = tweetRepo.findByOwnerIdAndId(loginId, tweetId);
         tweet saved = tweetRepo.save(twe);
         main.addReply(twe);
+        tweetRepo.save(main);
         return main;
     }
 
