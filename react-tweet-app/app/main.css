@@ -22,11 +22,6 @@ header {
    margin-right: auto;
 }
 
-.col {
-   text-align: center;
-   background-color: white;
-}
-
 .col-1 {
    border: 0;
 }
@@ -44,8 +39,8 @@ button {
    float: right;
 }
 .avatar-small {
-   width: 32px;
-   height: 32px;
+   width: 50px;
+   height: auto;
 }
 
 .avatar-big {
@@ -56,4 +51,8 @@ button {
 .siteLogo {
    width: 100%;
    height: auto;
+}
+
+.input {
+   width: auto;
 }
