@@ -1,15 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Header from "./components/Header";
-import Tweet from "./components/Tweet";
-import TweetCreator from "./components/TweetCreator";
 import HomePage from "./components/HomePage";
+import RegisterPage from "./components/RegisterPage";
 
 function Main() {
    return (
       <div>
          <Header />
          <HomePage />
+         <RegisterPage />
+         <div style={{ height: "100px" }}></div>
       </div>
    );
 }

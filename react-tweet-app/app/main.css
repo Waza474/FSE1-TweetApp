@@ -56,3 +56,7 @@ button {
 .input {
    width: auto;
 }
+
+label {
+   color: darkblue;
+}
