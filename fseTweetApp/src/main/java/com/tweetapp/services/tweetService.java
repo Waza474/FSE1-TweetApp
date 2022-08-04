@@ -2,6 +2,7 @@ package com.tweetapp.services;
 
 import com.tweetapp.entities.tweet;
 import com.tweetapp.repositories.tweetRepository;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 
 @Service
+@Log4j2
 public class tweetService {
 
     tweetRepository tweetRepo;
@@ -18,7 +20,9 @@ public class tweetService {
      * @return
      */
     public List<tweet> getALlTweets() {
-        return tweetRepo.findAll();
+        List<tweet> out = tweetRepo.findAll();
+        log.debug("{} Tweets found.", out.size());
+        return out;
     }
 
     /**
@@ -27,7 +31,9 @@ public class tweetService {
      * @return
      */
     public List<tweet> getAllTweetsByLoginId(String loginId){
-        return tweetRepo.findByOwnerId(loginId);
+        List<tweet> out = tweetRepo.findByOwnerId(loginId);
+        log.debug("{} Tweets found by OwnerId: {}", out.size(),loginId);
+        return out;
     }
 
     /**
@@ -36,6 +42,7 @@ public class tweetService {
      * @return
      */
     public tweet updateTweet(tweet tweet){
+        log.debug("Tweet with id: {} Updated", tweet.getId());
         return tweetRepo.save(tweet);
     }
 
@@ -46,6 +53,13 @@ public class tweetService {
      * @return
      */
     public String deleteTweet(String loginId, String tweetId){
+
+        if(tweetRepo.findByOwnerIdAndId(loginId,tweetId) == null){
+           log.warn("No Tweet found by {} with id: {}", loginId, tweetId);
+           return "No Tweet Found to delete";
+        }
+
+        log.debug("Tweet with id: {} has been deleted", tweetId);
         tweetRepo.deleteById(tweetId);
         return "Tweet has been deleted";
     }
@@ -57,8 +71,14 @@ public class tweetService {
      * @return returns what was liked
      */
     public tweet likeTweet(String loginId, String tweetId){
-        tweet twe = tweetRepo.findByOwnerIdAndId(loginId, tweetId);
+        tweet twe = tweetRepo.getTweetById(tweetId);
+        if(twe == null){
+            log.warn("Trying to like Tweet that does not exist. id: ", tweetId);
+            return null;
+        }
+        int a = twe.getLikes();
         twe.setLikes(twe.getLikes() + 1);
+        log.debug("Tweet with id: {} had like increased from {} to {}", tweetId, a,twe.getLikes());
         return tweetRepo.save(twe);
     }
 
@@ -74,6 +94,7 @@ public class tweetService {
         tweet saved = tweetRepo.save(twe);
         main.addReply(twe);
         tweetRepo.save(main);
+        log.debug("Reply Attached to Tweet");
         return main;
     }
 
@@ -84,7 +105,8 @@ public class tweetService {
      * @return
      */
     public tweet postNewTweet(String loginId, tweet newTweet) {
-        newTweet.setOwner(loginId);
+        newTweet.setOwnerId(loginId);
+        log.debug("New Tweet Posted, and OwnerId Ensured Added");
         return tweetRepo.save(newTweet);
     }
 }

@@ -34,6 +34,19 @@ function RegisterPage() {
       }
    }
 
+   function onSubmit(e) {
+      e.preventDefault();
+      const newUser = {
+         firstName: firstName,
+         lastName: lastName,
+         email: email,
+         loginId: loginId,
+         password: password,
+         contactNumber: contactNumber,
+      };
+      console.log(newUser);
+   }
+
    return (
       <div
          className="container"
@@ -43,7 +56,7 @@ function RegisterPage() {
             paddingBottom: "20px",
          }}
       >
-         <form>
+         <form onSubmit={(e) => onSubmit(e)}>
             <label style={{ paddingTop: "0px" }}>First Name:</label>
             <input
                type="text"
@@ -106,7 +119,7 @@ function RegisterPage() {
                className="form-control"
                name="passwordConfirm"
                style={{ fontSize: ".85em" }}
-               onChange={(event) => this.validationCheck_Password}
+               onChange={(event) => validationCheck_Password(eventNames)}
             ></input>
 
             <label style={{ paddingTop: "10px" }}>Contact Number:</label>
@@ -118,6 +131,7 @@ function RegisterPage() {
                style={{ fontSize: ".85em" }}
                maxLength="10"
                value={contactNumber}
+               onChange={(e) => setContactNumber(e.target.value)}
             ></input>
 
             <div

@@ -2,6 +2,7 @@ package com.tweetapp.services;
 
 import com.tweetapp.entities.user;
 import com.tweetapp.repositories.userRepository;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 @Service
+@Log4j2
 public class userService {
 
     @Autowired
@@ -20,6 +22,7 @@ public class userService {
      * @return
      */
     public user registerUser(user newUser){
+        log.debug("New user Saved into Repository.");
         return userRepository.save(newUser);
     }
 
@@ -28,7 +31,9 @@ public class userService {
      * @return
      */
     public List<user> getALlUsers(){
-        return userRepository.findAll();
+        List<user> out = userRepository.findAll();
+        log.debug("{} Users found.", out.size());
+        return out;
     }
 
     /**
@@ -37,7 +42,9 @@ public class userService {
      * @return
      */
     public List<user> getUsersByLoginId(String loginId){
-        return userRepository.findByLoginIdIsLike(loginId);
+        List<user> out = userRepository.findByLoginIdIsLike(loginId);
+        log.debug("{} Users found with Username containing {} .", out.size(),loginId);
+        return out;
     }
 
     /**
@@ -47,6 +54,7 @@ public class userService {
      */
     public String forgotPassword(String loginId) {
         user use = userRepository.findUserByLoginId(loginId);
+        log.debug("Password Returned for User: {}", loginId);
         return use.getPassword();
     }
 }
