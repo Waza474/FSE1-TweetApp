@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
 function RegisterPage() {
+   const [firstName, setFirstName] = useState("");
+   const [lastName, setLastName] = useState("");
+   const [email, setEmail] = useState("");
+   const [loginId, setLoginId] = useState("");
+   const [password, setPassword] = useState("");
+   const [contactNumber, setContactNumber] = useState("");
+
    function validationCheck(e) {
       const name = e.target.name;
       const value = e.target.value;
@@ -10,19 +17,21 @@ function RegisterPage() {
    function validationCheck_Email(e) {
       const name = e.target.name;
       const value = e.target.value;
-      this.set({ [name]: value });
+      setEmail(value);
    }
 
    function validationCheck_loginId(e) {
       const name = e.target.name;
       const value = e.target.value;
-      this.set({ [name]: value });
+      setLoginId(value);
    }
 
    function validationCheck_Password(e) {
       const name = e.target.name;
       const value = e.target.value;
-      this.set({ [name]: value });
+      if (name == "password") {
+         setPassword(value);
+      }
    }
 
    return (
@@ -42,7 +51,8 @@ function RegisterPage() {
                className="form-control"
                name="firstName"
                style={{ fontSize: ".85em" }}
-               onChange
+               value={firstName}
+               onChange={(e) => setFirstName(e.target.value)}
             ></input>
 
             <label style={{ paddingTop: "10px" }}>Last Name:</label>
@@ -52,6 +62,8 @@ function RegisterPage() {
                className="form-control"
                name="lastName"
                style={{ fontSize: ".85em" }}
+               value={lastName}
+               onChange={(e) => setLastName(e.target.value)}
             ></input>
 
             <label style={{ paddingTop: "10px" }}>Email: *</label>
@@ -61,7 +73,8 @@ function RegisterPage() {
                className="form-control"
                name="email"
                style={{ fontSize: ".85em" }}
-               onChange={(event) => this.validationCheck_Email}
+               onChange={(e) => validationCheck_Email(e)}
+               value={email}
             ></input>
 
             <label style={{ paddingTop: "10px" }}>Login Id / Username: *</label>
@@ -71,7 +84,8 @@ function RegisterPage() {
                className="form-control"
                name="loginId"
                style={{ fontSize: ".85em" }}
-               onChange={(event) => this.validationCheck_loginId}
+               onChange={(event) => validationCheck_loginId(event)}
+               value={loginId}
             ></input>
 
             <label style={{ paddingTop: "10px" }}>Password: *</label>
@@ -81,7 +95,8 @@ function RegisterPage() {
                className="form-control"
                name="password"
                style={{ fontSize: ".85em" }}
-               onChange={(event) => this.validationCheck_Password}
+               onChange={(event) => validationCheck_Password(event)}
+               value={password}
             ></input>
 
             <label style={{ paddingTop: "10px" }}>Cornfirm Password: *</label>
@@ -102,6 +117,7 @@ function RegisterPage() {
                name="contactNumber"
                style={{ fontSize: ".85em" }}
                maxLength="10"
+               value={contactNumber}
             ></input>
 
             <div
