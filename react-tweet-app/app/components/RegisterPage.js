@@ -40,63 +40,70 @@ function RegisterPage() {
                type="text"
                placeholder="First Name"
                className="form-control"
-               id="firstName"
+               name="firstName"
                style={{ fontSize: ".85em" }}
                onChange
             ></input>
+
             <label style={{ paddingTop: "10px" }}>Last Name:</label>
             <input
                type="text"
                placeholder="Last Name"
                className="form-control"
-               id="lastName"
+               name="lastName"
                style={{ fontSize: ".85em" }}
             ></input>
+
             <label style={{ paddingTop: "10px" }}>Email: *</label>
             <input
                type="email"
                placeholder="Email"
                className="form-control"
-               id="email"
+               name="email"
                style={{ fontSize: ".85em" }}
                onChange={(event) => this.validationCheck_Email}
             ></input>
+
             <label style={{ paddingTop: "10px" }}>Login Id / Username: *</label>
             <input
                type="text"
                placeholder="LoginId"
                className="form-control"
-               id="loginId"
+               name="loginId"
                style={{ fontSize: ".85em" }}
                onChange={(event) => this.validationCheck_loginId}
             ></input>
+
             <label style={{ paddingTop: "10px" }}>Password: *</label>
             <input
                type="password"
                placeholder="Password"
                className="form-control"
-               id="password"
+               name="password"
                style={{ fontSize: ".85em" }}
                onChange={(event) => this.validationCheck_Password}
             ></input>
+
             <label style={{ paddingTop: "10px" }}>Cornfirm Password: *</label>
             <input
                type="password"
                placeholder="Confirm Password"
                className="form-control"
-               id="passwordConfirm"
+               name="passwordConfirm"
                style={{ fontSize: ".85em" }}
                onChange={(event) => this.validationCheck_Password}
             ></input>
+
             <label style={{ paddingTop: "10px" }}>Contact Number:</label>
             <input
                type="number"
                placeholder="Contact Number"
                className="form-control"
-               id="contactNumber"
+               name="contactNumber"
                style={{ fontSize: ".85em" }}
                maxLength="10"
             ></input>
+
             <div
                className="row"
                style={{ paddingTop: "20px", textAlign: "right" }}
