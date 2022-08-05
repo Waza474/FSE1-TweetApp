@@ -49,6 +49,9 @@ public class userService {
 
     /**
      * Simply returns the password for a given user.
+     *
+     * !! No longer used as functionality changed
+     *
      * @param loginId
      * @return
      */
@@ -56,5 +59,19 @@ public class userService {
         user use = userRepository.findUserByLoginId(loginId);
         log.debug("Password Returned for User: {}", loginId);
         return use.getPassword();
+    }
+
+    /**
+     * Will change the given users password
+     * @param loginId
+     * @param newPassword
+     * @return
+     */
+    public user changePassword(String loginId, String newPassword) {
+        user use = userRepository.findUserByLoginId(loginId);
+        // User will be logged in to complete this request, so no check neccesary
+        use.setPassword(newPassword);
+        log.debug("Password changed for user: {}", loginId);
+        return userRepository.save(use);
     }
 }

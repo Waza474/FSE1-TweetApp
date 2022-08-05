@@ -8,24 +8,6 @@ function RegisterPage() {
    const [password, setPassword] = useState("");
    const [contactNumber, setContactNumber] = useState("");
 
-   function validationCheck(e) {
-      const name = e.target.name;
-      const value = e.target.value;
-      this.set({ [name]: value });
-   }
-
-   function validationCheck_Email(e) {
-      const name = e.target.name;
-      const value = e.target.value;
-      setEmail(value);
-   }
-
-   function validationCheck_loginId(e) {
-      const name = e.target.name;
-      const value = e.target.value;
-      setLoginId(value);
-   }
-
    function validationCheck_Password(e) {
       const name = e.target.name;
       const value = e.target.value;
@@ -33,6 +15,7 @@ function RegisterPage() {
          setPassword(value);
       }
    }
+   function check_password(pa) {}
 
    function onSubmit(e) {
       e.preventDefault();
@@ -45,6 +28,8 @@ function RegisterPage() {
          contactNumber: contactNumber,
       };
       console.log(newUser);
+
+      // internal server error, duplicate key exceptions
    }
 
    return (
@@ -86,7 +71,7 @@ function RegisterPage() {
                className="form-control"
                name="email"
                style={{ fontSize: ".85em" }}
-               onChange={(e) => validationCheck_Email(e)}
+               onChange={(e) => setEmail(e)}
                value={email}
             ></input>
 
@@ -97,7 +82,7 @@ function RegisterPage() {
                className="form-control"
                name="loginId"
                style={{ fontSize: ".85em" }}
-               onChange={(event) => validationCheck_loginId(event)}
+               onChange={(event) => setLoginId(event)}
                value={loginId}
             ></input>
 
@@ -119,7 +104,7 @@ function RegisterPage() {
                className="form-control"
                name="passwordConfirm"
                style={{ fontSize: ".85em" }}
-               onChange={(event) => validationCheck_Password(eventNames)}
+               onChange={(event) => validationCheck_Password(event)}
             ></input>
 
             <label style={{ paddingTop: "10px" }}>Contact Number:</label>

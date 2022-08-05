@@ -39,10 +39,17 @@ public class userController {
     }
 
     // Breif only has a GET for password, currently will just return passwword for given user
-    @GetMapping("/{loginId}/forgot")
+    //@GetMapping("/{loginId}/forgot")
     public String forgotPassword(@PathVariable String loginId){
         log.debug("Returning forgotten password...");
         return userServ.forgotPassword(loginId);
+    }
+
+    // Correct Implementation of Change Password
+    @PutMapping("/{loginId}/forgot")
+    public user changePassword(@PathVariable String loginId, @RequestBody String newPassword){
+        log.debug("Changing users password...");
+        return userServ.changePassword(loginId, newPassword);
     }
 
     // Login, is a get, not sure what it does yet
