@@ -34,7 +34,7 @@ public class userController {
     // Gets users like the given username/loginId
     @GetMapping("/user/search/{loginId}")
     public List<user> getUsersByLoginId(@PathVariable String loginId){
-        log.debug("Gettings all Users by LoginId/Username...");
+        log.debug("Getting all Users by LoginId/Username...");
         return userServ.getUsersByLoginId(loginId);
     }
 

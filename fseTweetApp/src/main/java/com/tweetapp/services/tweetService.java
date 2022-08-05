@@ -54,12 +54,21 @@ public class tweetService {
      */
     public String deleteTweet(String loginId, String tweetId){
 
-        if(tweetRepo.findByOwnerIdAndId(loginId,tweetId) == null){
+        tweet tweet = tweetRepo.findByOwnerIdAndId(loginId, tweetId);
+        if(tweet == null){
            log.warn("No Tweet found by {} with id: {}", loginId, tweetId);
            return "No Tweet Found to delete";
         }
 
         log.debug("Tweet with id: {} has been deleted", tweetId);
+
+        // Deleting replies first
+        List<tweet> replies = tweet.getReplies();
+        for(tweet t : replies){
+            tweetRepo.delete(t);
+        }
+
+        // Delete Master Tweet
         tweetRepo.deleteById(tweetId);
         return "Tweet has been deleted";
     }
