@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1.0/tweets")
 @Log4j2
+@CrossOrigin(origins = "https://localhost:3000")
 public class tweetController {
 
     @Autowired

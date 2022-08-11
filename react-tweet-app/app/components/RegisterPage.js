@@ -71,7 +71,7 @@ function RegisterPage() {
                className="form-control"
                name="email"
                style={{ fontSize: ".85em" }}
-               onChange={(e) => setEmail(e)}
+               onChange={(e) => setEmail(e.target.value)}
                value={email}
             ></input>
 
@@ -82,7 +82,7 @@ function RegisterPage() {
                className="form-control"
                name="loginId"
                style={{ fontSize: ".85em" }}
-               onChange={(event) => setLoginId(event)}
+               onChange={(e) => setLoginId(e.target.value)}
                value={loginId}
             ></input>
 
