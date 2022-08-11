@@ -27,6 +27,7 @@ header {
 }
 
 button {
+   border: none;
    background-color: dodgerblue;
    color: white;
    font-style: bold;

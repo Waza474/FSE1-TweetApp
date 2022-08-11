@@ -1,5 +1,6 @@
 package com.tweetapp.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
@@ -18,18 +19,24 @@ public class tweet {
     private String id;
 
     @NonNull
+    @JsonProperty
     private String content;
 
     @NonNull
+    @JsonProperty
     private String tag;
 
+    @JsonProperty
     private int likes;
 
+    @JsonProperty
     private List<tweet> replies;
 
     @NonNull
+    @JsonProperty
     private String ownerId;
 
+    @JsonProperty
     private LocalDateTime timeCreated;
 
 
