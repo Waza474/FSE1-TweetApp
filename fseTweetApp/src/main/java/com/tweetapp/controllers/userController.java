@@ -1,7 +1,6 @@
 package com.tweetapp.controllers;
 
 import com.tweetapp.entities.user;
-import com.tweetapp.repositories.userRepository;
 import com.tweetapp.services.userService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,10 +52,16 @@ public class userController {
         return userServ.changePassword(loginId, newPassword);
     }
 
+
     // Login, is a get, not sure what it does yet
     @GetMapping("/login")
-    public String login(){
-        return "You have Logged In";
+    public boolean login(@RequestParam("username") String username, @RequestParam String password){
+        return userServ.login(username, password);
     }
 
+    // Gets users details
+    @GetMapping("/loginSuccess")
+    public user loginSuccess(@RequestParam("username") String username){
+        return userServ.loginSuccess(username);
+    }
 }

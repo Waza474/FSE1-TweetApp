@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import ReactDOM from "react-dom/client";
 import { useImmerReducer } from "use-immer";
 import StateContext from "./StateContext";
@@ -17,12 +17,21 @@ import LoggedInPage from "./components/LoggedInPage";
 function Main() {
    const initialState = {
       loggedIn: false,
+      user: {
+         firstName: "",
+         lastName: "",
+         email: "",
+         loginId: "",
+         password: "",
+         contactNumber: "",
+      },
    };
 
    function ourReducer(draft, action) {
       switch (action.type) {
          case "login":
             draft.loggedIn = true;
+            draft.user = action.data;
             return;
          case "logout":
             draft.loggedIn = false;

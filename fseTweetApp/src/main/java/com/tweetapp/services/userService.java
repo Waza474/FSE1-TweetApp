@@ -74,4 +74,26 @@ public class userService {
         log.debug("Password changed for user: {}", loginId);
         return userRepository.save(use);
     }
+
+    /**
+     * Returns a boolean if the login details match an existing user.
+     * The front shall then request user details and this is an authentication call.
+     * @param loginId
+     * @param password
+     * @return
+     */
+    public boolean login(String loginId, String password) {
+        log.debug("Finding user with loginId: {}", loginId);
+        user use = userRepository.findUserByLoginId(loginId);
+        if (use == null){
+            log.debug("No User Found");
+            return false;
+        }
+        log.debug("Checking Password match");
+        return use.getPassword().equals(password);
+    }
+
+    public user loginSuccess(String username){
+        return userRepository.findUserByLoginId(username);
+    }
 }
