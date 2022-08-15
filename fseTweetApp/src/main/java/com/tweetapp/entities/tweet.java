@@ -19,24 +19,17 @@ public class tweet {
     private String id;
 
     @NonNull
-    @JsonProperty
     private String content;
 
-    @NonNull
-    @JsonProperty
     private String tag;
 
-    @JsonProperty
     private int likes;
 
-    @JsonProperty
     private List<tweet> replies;
 
     @NonNull
-    @JsonProperty
     private String ownerId;
 
-    @JsonProperty
     private LocalDateTime timeCreated;
 
 
