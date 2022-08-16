@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import { useImmerReducer } from "use-immer";
 import StateContext from "./StateContext";
@@ -40,6 +40,34 @@ function Main() {
    }
 
    const [state, dispatch] = useImmerReducer(ourReducer, initialState);
+
+   useEffect(() => {
+      console.log("gello");
+      const data1 = JSON.parse(window.localStorage.getItem("tweetAppLoggedIn"));
+      const data2 = JSON.parse(window.localStorage.getItem("tweetAppUser"));
+
+      if (data1) {
+         dispatch({ type: "login", data: data2 });
+      } else {
+         dispatch({ type: "logout" });
+      }
+   }, []);
+
+   useEffect(() => {
+      if (state.loggedIn) {
+         window.localStorage.setItem(
+            "tweetAppLoggedIn",
+            JSON.stringify(state.loggedIn)
+         );
+         window.localStorage.setItem(
+            "tweetAppUser",
+            JSON.stringify(state.user)
+         );
+      } else {
+         window.localStorage.removeItem("tweetAppLoggedIn");
+         window.localStorage.removeItem("tweetAppUser");
+      }
+   }, [state.loggedIn]);
 
    return (
       <StateContext.Provider value={state}>

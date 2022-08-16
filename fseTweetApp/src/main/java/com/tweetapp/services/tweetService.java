@@ -3,6 +3,7 @@ package com.tweetapp.services;
 import com.tweetapp.entities.tweet;
 import com.tweetapp.repositories.tweetRepository;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +14,7 @@ import java.util.List;
 @Log4j2
 public class tweetService {
 
+    @Autowired
     tweetRepository tweetRepo;
 
     /**

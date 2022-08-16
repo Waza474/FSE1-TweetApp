@@ -1,15 +1,67 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import axios from "axios";
+import StateContext from "../StateContext";
 
 function TweetCreator() {
+   const [content, setContent] = useState("");
+   const [tag, setTag] = useState("");
+   const [taBorderColor, setTaBorderColor] = useState("white");
+
+   const appState = useContext(StateContext);
+
+   const style1 = {
+      height: "90px",
+      fontSize: ".75em",
+   };
+
+   const style2 = {
+      height: "90px",
+      fontSize: ".75em",
+      borderColor: taBorderColor,
+      borderWidth: "2px",
+   };
+
+   async function onSubmit(e) {
+      e.preventDefault();
+
+      const newTweet = {
+         content: content == "" ? null : content,
+         tag: tag == "" ? null : content,
+      };
+
+      console.log(newTweet);
+
+      const target =
+         "http://localhost:8080/api/v1.0/tweets/" +
+         appState.user.loginId +
+         "/add";
+      try {
+         await axios.post(target, newTweet).then((res) => {
+            console.log("Tweet Created");
+            console.log(res.data);
+         });
+      } catch (e) {
+         console.log("AAHHAHAHSDHAS", e);
+         switch (e.response.status) {
+            case 400:
+               console.log("Not Null Error");
+               setTaBorderColor("red");
+               break;
+         }
+      }
+   }
+
    return (
       <div style={{ padding: "7px" }}>
-         <form>
+         <form onSubmit={(e) => onSubmit(e)}>
             <div className="row">
                <textarea
                   placeholder="Tweet Content"
                   className="form-control"
-                  style={{ height: "90px", fontSize: ".75em" }}
+                  id="taContent"
+                  style={style1}
                   maxLength="144"
+                  onChange={(e) => setContent(e.target.value)}
                ></textarea>
             </div>
             <div
@@ -18,11 +70,12 @@ function TweetCreator() {
             >
                <input
                   type="text"
-                  placeholder="tag"
+                  placeholder="tag (optional)"
                   className="form-control"
                   id="tag"
-                  style={{ fontSize: ".85em" }}
+                  style={{ fontSize: ".65em" }}
                   maxLength="50"
+                  onChange={(e) => setTag(e.target.value)}
                ></input>
             </div>
             <div

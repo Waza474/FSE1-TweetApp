@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import StateContext from "../StateContext";
 
 function Tweet() {
    var time = new Date();
    time = time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
+
+   const appState = useContext(StateContext);
+
+   const [tweetData, setTweetData] = useState();
+
+   const tweetExample = {
+      content: "",
+      tag: "",
+      owner: "",
+      likes: "",
+      replies: "",
+   };
 
    return (
       <div className="row" style={{ backgroundColor: "#89cff0" }}>
@@ -38,6 +51,20 @@ function Tweet() {
                   what if this content was very long how does this thingo handle
                   it lol, i dont know lilsldasnlasdkna jlkasdl hadljhs asdl .
                </p>
+            </div>
+            <div
+               className="row"
+               style={{ color: "darkblue", textAlign: "center" }}
+            >
+               <div className="col">
+                  <p>Likes: 0</p>
+               </div>
+               <div className="col">Replies</div>
+               {appState.loggedIn ? (
+                  <div className="col">Reply</div>
+               ) : (
+                  <div></div>
+               )}
             </div>
          </div>
       </div>

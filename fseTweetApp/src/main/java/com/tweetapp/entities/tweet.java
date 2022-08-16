@@ -34,7 +34,7 @@ public class tweet {
 
 
 
-    public tweet(String content, String tag, String ownerId) {
+    public tweet(@NonNull String content, String tag, @NonNull String ownerId) {
         this.content = content;
         this.tag = tag;
         this.ownerId = ownerId;
