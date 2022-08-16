@@ -45,7 +45,14 @@ function TweetCreator() {
          switch (e.response.status) {
             case 400:
                console.log("Not Null Error");
-               setTaBorderColor("red");
+               /* Cannot change style property, not sure why.
+               document
+                  .getElementById("taContent")
+                  .style.setProperty("borderColor", "yellow");
+               document
+                  .getElementById("taContent")
+                  .style.setProperty("borderWidth", "4");
+                  */
                break;
          }
       }
