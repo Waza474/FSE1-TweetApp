@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import axios from "axios";
 import StateContext from "../StateContext";
 
-function TweetCreator() {
+function TweetCreator(props) {
    const [content, setContent] = useState("");
    const [tag, setTag] = useState("");
    const [taBorderColor, setTaBorderColor] = useState("white");
@@ -38,6 +38,7 @@ function TweetCreator() {
          await axios.post(target, newTweet).then((res) => {
             console.log("Tweet Created");
             console.log(res.data);
+            props.callback();
          });
 
          document.getElementById("taContent").value = "";
@@ -60,8 +61,23 @@ function TweetCreator() {
       }
    }
 
+   function testfunc() {
+      console.log("test");
+   }
+
    return (
       <div style={{ padding: "7px" }}>
+         <button
+            onClick={(e) =>
+               props.callback({
+                  content: "Apple",
+                  likes: 10,
+                  ownerId: "CatDog",
+               })
+            }
+         >
+            test
+         </button>
          <form onSubmit={(e) => onSubmit(e)}>
             <div className="row">
                <textarea

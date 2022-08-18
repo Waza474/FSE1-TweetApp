@@ -3,7 +3,7 @@ import axios from "axios";
 import Tweet from "./Tweet";
 import StateContext from "../StateContext";
 
-function TweetsHolder() {
+function TweetsHolder({ childFunc }) {
    const appState = useContext(StateContext);
 
    const [tweets, setTweets] = useState([]);
@@ -26,11 +26,22 @@ function TweetsHolder() {
          setA(false);
          console.log(temp);
       }
+      console.log("2");
    }
    // Get the tweets
    useEffect(() => {
+      console.log("1");
       getTweeetsFromAPI();
-   });
+      childFunc.current = NewTweetCreated;
+   }, []);
+
+   function testfunc2(msg) {
+      console.log(msg);
+   }
+
+   function NewTweetCreated() {
+      getTweeetsFromAPI();
+   }
 
    const testTweets = [
       { content: "Apple", likes: 10, ownerId: "CatDog" },

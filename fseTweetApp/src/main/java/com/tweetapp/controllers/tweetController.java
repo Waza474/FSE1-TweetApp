@@ -22,7 +22,7 @@ public class tweetController {
     // Get all the tweets that exist in the database
     @GetMapping("/all")
     public List<tweet> getALlTweets() {
-        log.debug("Getting all Tweets...");
+        log.info("Getting all Tweets...");
         return tweetService.getALlTweets();
     }
 

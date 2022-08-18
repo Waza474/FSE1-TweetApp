@@ -1,6 +1,6 @@
 import TweetCreator from "./TweetCreator";
 import axios from "axios";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import DispatchContext from "../DispatchContext";
 import StateContext from "../StateContext";
@@ -8,6 +8,8 @@ import TweetsHolder from "./TweetsHolder";
 
 function HomePage() {
    const appState = useContext(StateContext);
+
+   const childFunc = useRef(null);
 
    return (
       <div className="container" style={{ paddingTop: "10px" }}>
@@ -27,7 +29,7 @@ function HomePage() {
             <div className="col"></div>
             <div className="col-8" style={{ backgroundColor: "#89cff0" }}>
                {appState.loggedIn ? (
-                  <TweetCreator />
+                  <TweetCreator callback={childFunc.current} />
                ) : (
                   <p style={{ textAlign: "center", paddingTop: "10px" }}>
                      You must login to Create Tweets
@@ -38,7 +40,7 @@ function HomePage() {
          <div className="row">
             <div className="col"></div>
             <div className="col-8">
-               <TweetsHolder />
+               <TweetsHolder childFunc={childFunc} />
             </div>
          </div>
       </div>
