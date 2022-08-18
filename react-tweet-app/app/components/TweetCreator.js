@@ -26,20 +26,22 @@ function TweetCreator() {
 
       const newTweet = {
          content: content == "" ? null : content,
-         tag: tag == "" ? null : content,
+         tag: tag == "" ? null : tag,
+         ownerId: appState.user.loginId,
       };
 
       console.log(newTweet);
 
       const target =
-         "http://localhost:8080/api/v1.0/tweets/" +
-         appState.user.loginId +
-         "/add";
+         "http://localhost:8080/api/v1.0/tweets/" + newTweet.ownerId + "/add";
       try {
          await axios.post(target, newTweet).then((res) => {
             console.log("Tweet Created");
             console.log(res.data);
          });
+
+         document.getElementById("taContent").value = "";
+         document.getElementById("tag").value = "";
       } catch (e) {
          console.log("AAHHAHAHSDHAS", e);
          switch (e.response.status) {

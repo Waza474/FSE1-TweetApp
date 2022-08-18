@@ -13,6 +13,7 @@ import AllUsersPage from "./components/AllUsersPage";
 import LogoutPage from "./components/LogoutPage";
 import RegisteredPage from "./components/RegisteredPage";
 import LoggedInPage from "./components/LoggedInPage";
+import ForgotPasswordPage from "./components/ForgotPasswordPage";
 
 function Main() {
    const initialState = {
@@ -85,6 +86,10 @@ function Main() {
                   <Route path="/all-users" element={<AllUsersPage />} />
                   <Route path="/logout" element={<LogoutPage />} />
                   <Route path="/registered" element={<RegisteredPage />} />
+                  <Route
+                     path="/forgot-password"
+                     element={<ForgotPasswordPage />}
+                  />
                </Routes>
             </BrowserRouter>
             <div style={{ height: "100px" }}></div>

@@ -102,11 +102,12 @@ public class tweetService {
      */
     public tweet replyTwe(String loginId, String tweetId, tweet twe) {
         tweet main = tweetRepo.findByOwnerIdAndId(loginId, tweetId);
+        twe.setType("reply");
         tweet saved = tweetRepo.save(twe);
         main.addReply(twe);
         tweetRepo.save(main);
         log.debug("Reply Attached to Tweet");
-        return main;
+        return saved;
     }
 
     /**

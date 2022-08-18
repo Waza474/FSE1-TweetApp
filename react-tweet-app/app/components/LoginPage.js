@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useContext } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, Link } from "react-router-dom";
 import DispatchContext from "../DispatchContext";
 
 function LoginPage() {
@@ -27,29 +27,32 @@ function LoginPage() {
 
       await axios(config).then((res) => {
          console.log(res);
-         console.log(res.data);
+         console.log("data", res.data);
          result = res.data;
       });
 
       if (!result) {
+         console.log("Wrong Details");
          document.getElementById("lbLoginId").style.setProperty("color", "red");
          document.getElementById("lbPass").style.setProperty("color", "red");
          document.getElementById("lbWrong").style.setProperty("color", "red");
+      } else {
+         var config = {
+            method: "get",
+            url:
+               "http://localhost:8080/api/v1.0/tweets/loginSuccess?username=" +
+               username,
+            headers: {},
+         };
+
+         axios(config).then((res) => {
+            console.log("Login Successful");
+            console.log(res.data);
+            appDispatch({ type: "login", data: res.data });
+         });
+
+         navigate("/");
       }
-
-      var config = {
-         method: "get",
-         url: "http://localhost:8080/api/v1.0/tweets/loginSuccess?username=aa",
-         headers: {},
-      };
-
-      axios(config).then((res) => {
-         console.log("Login Successful");
-         console.log(res.data);
-         appDispatch({ type: "login", data: res.data });
-      });
-
-      navigate("/");
    }
 
    return (
@@ -93,9 +96,12 @@ function LoginPage() {
                <button type="submit">Log In</button>
             </div>
             <p id="lbWrong" style={{ color: "#89cff0" }}>
-               The LoginID/Usernam and Password Combo do not Exist.
+               The LoginID/Username and Password Combo do not Exist.
             </p>
          </form>
+         <div>
+            <Link to="/forgot-password">Forgot Password?</Link>
+         </div>
       </div>
    );
 }

@@ -1,10 +1,10 @@
-import Tweet from "./Tweet";
 import TweetCreator from "./TweetCreator";
 import axios from "axios";
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import DispatchContext from "../DispatchContext";
 import StateContext from "../StateContext";
+import TweetsHolder from "./TweetsHolder";
 
 function HomePage() {
    const appState = useContext(StateContext);
@@ -37,27 +37,8 @@ function HomePage() {
          </div>
          <div className="row">
             <div className="col"></div>
-            <div className="col-8"></div>
-         </div>
-
-         <div className="row" style={{ paddingBottom: "20px" }}>
-            <div className="col"></div>
-            <div className="col-8" style={{ backgroundColor: "yellow" }}>
-               TWEET
-            </div>
-         </div>
-
-         <div className="row" style={{ paddingBottom: "20px" }}>
-            <div className="col"></div>
-            <div className="col-8" style={{ backgroundColor: "yellow" }}>
-               <Tweet />
-            </div>
-         </div>
-
-         <div className="row" style={{ paddingBottom: "20px" }}>
-            <div className="col"></div>
-            <div className="col-8" style={{ backgroundColor: "yellow" }}>
-               TWEET
+            <div className="col-8">
+               <TweetsHolder />
             </div>
          </div>
       </div>
