@@ -15,6 +15,8 @@ function Tweet(props) {
    const [likes, setLikes] = useState(tweetData.likes);
    const [reply, setReply] = useState(false);
    const [replies, setReplies] = useState(tweetData.replies);
+   const [editStatus, setEditStatus] = useState(false);
+   const [editText, setEditText] = useState(tweetData.content);
 
    const tweetExample = {
       content: "",
@@ -62,6 +64,58 @@ function Tweet(props) {
       setShowReplies(true);
    }
 
+   const timeCreated =
+      tweetData.timeCreated.substring(11, 16) +
+      " - " +
+      tweetData.timeCreated.substring(8, 10) +
+      "-" +
+      tweetData.timeCreated.substring(5, 7) +
+      "-" +
+      tweetData.timeCreated.substring(0, 4);
+
+   async function onDeleteTweet(e) {
+      var config = {
+         method: "delete",
+         url:
+            "http://localhost:8080/api/v1.0/tweets/" +
+            tweetData.ownerId +
+            "/delete/" +
+            tweetData.id,
+         headers: {},
+      };
+
+      axios(config).then(function (response) {
+         console.log(JSON.stringify(response.data));
+      });
+
+      props.refreshTweets();
+   }
+
+   async function onEditTweet(e) {
+      if (tweetData.content == editText) {
+         console.log("No changes noted, not updating");
+         setEditStatus(!editStatus);
+         return;
+      }
+
+      var data = tweetData;
+      data.content = editText;
+
+      var config = {
+         method: "put",
+         url: "http://localhost:8080/api/v1.0/tweets/X/update/Y",
+         headers: {},
+         data: data,
+      };
+
+      axios(config).then(function (response) {
+         setTweetData(response.data);
+         console.log(JSON.stringify(response.data));
+      });
+
+      setEditStatus(!editStatus);
+   }
+
    return (
       <div
          style={
@@ -103,11 +157,46 @@ function Tweet(props) {
                         color: "darkblue",
                      }}
                   >
-                     {time}
+                     {timeCreated}
                   </div>
+                  {appState.user.loginId == tweetData.ownerId && (
+                     <div style={{ paddingRight: "5px", fontSize: "0.7em" }}>
+                        <button onClick={(e) => onDeleteTweet(e)}>
+                           Delete Tweet
+                        </button>
+                     </div>
+                  )}
+                  {appState.user.loginId == tweetData.ownerId &&
+                     (!editStatus ? (
+                        <div style={{ paddingRight: "5px", fontSize: "0.7em" }}>
+                           <button onClick={() => setEditStatus(!editStatus)}>
+                              Edit Tweet
+                           </button>
+                        </div>
+                     ) : (
+                        <div style={{ paddingRight: "5px", fontSize: "0.7em" }}>
+                           <button onClick={(e) => onEditTweet(e)}>
+                              Save Changes
+                           </button>
+                        </div>
+                     ))}
                </div>
                <div className="row">
-                  <p style={{ paddingLeft: "7px" }}>{tweetData.content}</p>
+                  {!editStatus ? (
+                     <p style={{ paddingLeft: "7px" }}>{tweetData.content}</p>
+                  ) : (
+                     <textarea
+                        className="form-control"
+                        id="taContent"
+                        style={{
+                           height: "64px",
+                           fontSize: ".7em",
+                        }}
+                        maxLength="144"
+                        value={editText}
+                        onChange={(e) => setEditText(e.target.value)}
+                     ></textarea>
+                  )}
                </div>
                <div
                   className="row"

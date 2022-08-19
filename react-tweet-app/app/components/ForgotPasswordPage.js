@@ -8,6 +8,7 @@ function ForgotPasswordPage() {
    const [loginId, setLoginId] = useState("");
    const [password, setPassword] = useState("");
    const [confirm, setConfirm] = useState("");
+   const navigate = useNavigate();
 
    function validationCheck_Password(e) {
       const name = e.target.name;
@@ -21,11 +22,7 @@ function ForgotPasswordPage() {
       console.log("CHANGE: " + password + "  " + confirm);
 
       if (password != confirm) {
-         document
-            .getElementById("lbPassword")
-            .style.setProperty("color", "red");
-         document.getElementById("lbConfirm").style.setProperty("color", "red");
-         document.getElementById("pMatch").style.setProperty("color", "red");
+         dispPassReq();
       } else {
          document
             .getElementById("lbPassword")
@@ -39,9 +36,63 @@ function ForgotPasswordPage() {
       }
    }
 
+   function turnRed(id) {
+      document.getElementById(id).style.setProperty("color", "red");
+   }
+
+   function dispPassReq() {
+      turnRed("lbPassword");
+      turnRed("lbConfirm");
+      turnRed("pMatch");
+   }
+
+   function dispRequired() {
+      turnRed("pReq");
+      turnRed("pUser");
+   }
+
+   async function onSubmit(e) {
+      e.preventDefault();
+
+      if (password != confirm) return;
+
+      console.log("User does not exist");
+      if (loginId == "" || loginId == null) {
+         dispRequired();
+         return;
+      }
+
+      var config = {
+         method: "put",
+         url: "http://localhost:8080/api/v1.0/tweets/" + loginId + "/forgot/",
+         headers: {
+            "Content-Type": "text/plain",
+         },
+         data: password,
+      };
+      try {
+         await axios(config).then(function (response) {
+            console.log(JSON.stringify(response.data));
+         });
+         navigate("/login");
+      } catch (e) {
+         switch (e.response.status) {
+            case 500:
+               console.log("User does not exist");
+               document
+                  .getElementById("pUser")
+                  .style.setProperty("color", "red");
+               break;
+            default:
+               console.log("Unhandled Error Found on Forgot Password");
+               break;
+         }
+      }
+   }
+
    return (
       <div>
-         <h1 style={{ textAlign: "center" }}>Forogot Password?</h1>
+         <h1 style={{ textAlign: "center" }}>Forgot Password?</h1>
          <div
             className="container"
             style={{
@@ -51,19 +102,6 @@ function ForgotPasswordPage() {
             }}
          >
             <form onSubmit={(e) => onSubmit(e)}>
-               <label style={{ paddingTop: "10px" }} id="lbEmail">
-                  Email: *
-               </label>
-               <input
-                  type="email"
-                  placeholder="Email"
-                  className="form-control"
-                  name="email"
-                  style={{ fontSize: ".85em" }}
-                  onChange={(e) => setEmail(e.target.value)}
-                  value={email}
-               ></input>
-
                <label style={{ paddingTop: "10px" }} id="lbLoginId">
                   Login Id / Username: *
                </label>
@@ -130,6 +168,18 @@ function ForgotPasswordPage() {
                         }}
                      >
                         - Passwords must match
+                     </p>
+                     <p
+                        id="pUser"
+                        style={{
+                           fontSize: "1.5em",
+                           color: "#89cff0",
+                           padding: "0",
+                           margin: "0",
+                           textAlign: "right",
+                        }}
+                     >
+                        No user Exists...
                      </p>
                   </div>
                   <div className="col">

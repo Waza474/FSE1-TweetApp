@@ -52,7 +52,14 @@ function TweetsHolder({ childFunc }) {
    return (
       <div>
          {tweets.map(
-            (twe) => twe.type == "root" && <Tweet data={twe} type={"main"} />
+            (twe) =>
+               twe.type == "root" && (
+                  <Tweet
+                     data={twe}
+                     type={"main"}
+                     refreshTweets={getTweeetsFromAPI}
+                  />
+               )
          )}
       </div>
    );

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Log4j2
@@ -19,6 +20,7 @@ public class tweetService {
 
     /**
      * Get all of the tweets that exist in the database
+     *
      * @return
      */
     public List<tweet> getALlTweets() {
@@ -29,45 +31,50 @@ public class tweetService {
 
     /**
      * Get all the tweets by a given ownerId
+     *
      * @param loginId : the ownerId of the tweet
      * @return
      */
-    public List<tweet> getAllTweetsByLoginId(String loginId){
+    public List<tweet> getAllTweetsByLoginId(String loginId) {
         List<tweet> out = tweetRepo.findByOwnerId(loginId);
-        log.debug("{} Tweets found by OwnerId: {}", out.size(),loginId);
+        log.debug("{} Tweets found by OwnerId: {}", out.size(), loginId);
         return out;
     }
 
     /**
      * update a tweet
+     *
      * @param tweet
      * @return
      */
-    public tweet updateTweet(tweet tweet){
+    public tweet updateTweet(tweet tweet) {
         log.debug("Tweet with id: {} Updated", tweet.getId());
         return tweetRepo.save(tweet);
     }
 
     /**
      * Delete a tweet
+     *
      * @param loginId : not used by required by specification
      * @param tweetId
      * @return
      */
-    public String deleteTweet(String loginId, String tweetId){
+    public String deleteTweet(String loginId, String tweetId) {
 
         tweet tweet = tweetRepo.findByOwnerIdAndId(loginId, tweetId);
-        if(tweet == null){
-           log.warn("No Tweet found by {} with id: {}", loginId, tweetId);
-           return "No Tweet Found to delete";
+        if (tweet == null) {
+            log.warn("No Tweet found by {} with id: {}", loginId, tweetId);
+            return "No Tweet Found to delete";
         }
 
         log.debug("Tweet with id: {} has been deleted", tweetId);
 
         // Deleting replies first
-        List<tweet> replies = tweet.getReplies();
-        for(tweet t : replies){
-            tweetRepo.delete(t);
+        if(tweet.getReplies() != null) {
+            List<tweet> replies = tweet.getReplies();
+            for (tweet t : replies) {
+                tweetRepo.delete(t);
+            }
         }
 
         // Delete Master Tweet
@@ -77,31 +84,35 @@ public class tweetService {
 
     /**
      * like a tweet
+     *
      * @param loginId
      * @param tweetId
      * @return returns what was liked
      */
-    public tweet likeTweet(String loginId, String tweetId){
+    public tweet likeTweet(String loginId, String tweetId) {
         tweet twe = tweetRepo.getTweetById(tweetId);
-        if(twe == null){
+        if (twe == null) {
             log.warn("Trying to like Tweet that does not exist. id: ", tweetId);
             return null;
         }
         int a = twe.getLikes();
         twe.setLikes(twe.getLikes() + 1);
-        log.debug("Tweet with id: {} had like increased from {} to {}", tweetId, a,twe.getLikes());
+        log.debug("Tweet with id: {} had like increased from {} to {}", tweetId, a, twe.getLikes());
         return tweetRepo.save(twe);
     }
 
     /**
      * Attach/Reply to a tweet
+     *
      * @param loginId
      * @param tweetId : Ids used to find the original tweet
-     * @param twe : the tweet to attach (the reply)
+     * @param twe     : the tweet to attach (the reply)
      * @return Returns the master tweet as the reply has been attached
      */
     public tweet replyTwe(String loginId, String tweetId, tweet twe) {
-        tweet main = tweetRepo.findByOwnerIdAndId(loginId, tweetId);
+        Optional<tweet> op = tweetRepo.findById(tweetId);
+        tweet main;
+        main = op.get();
         twe.setType("reply");
         tweet saved = tweetRepo.save(twe);
         main.addReply(twe);
@@ -112,7 +123,8 @@ public class tweetService {
 
     /**
      * Post a new tweet ensuring the ownerId is set
-     * @param loginId : the ownerId
+     *
+     * @param loginId  : the ownerId
      * @param newTweet
      * @return
      */

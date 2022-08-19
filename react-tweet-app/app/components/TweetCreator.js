@@ -67,17 +67,6 @@ function TweetCreator(props) {
 
    return (
       <div style={{ padding: "7px" }}>
-         <button
-            onClick={(e) =>
-               props.callback({
-                  content: "Apple",
-                  likes: 10,
-                  ownerId: "CatDog",
-               })
-            }
-         >
-            test
-         </button>
          <form onSubmit={(e) => onSubmit(e)}>
             <div className="row">
                <textarea
