@@ -16,12 +16,15 @@ function HomePage() {
          <div className="row" style={{ paddingBottom: "60px" }}>
             <div className="col">
                {appState.loggedIn ? (
-                  <img
-                     className="avatar-big"
-                     src={
-                        "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
-                     }
-                  />
+                  <div>
+                     <img
+                        className="avatar-big"
+                        src={
+                           "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
+                        }
+                     />
+                     <p>Hello {appState.user.loginId}!</p>
+                  </div>
                ) : (
                   <div />
                )}

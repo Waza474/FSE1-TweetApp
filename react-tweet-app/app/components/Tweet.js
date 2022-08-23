@@ -45,6 +45,20 @@ function Tweet(props) {
       setLikes(likes + 1);
       // NEED TO DO: ADD AXIOS FUNCTION
       // POTENTIALLY REWORD AS IT DEPENDS ON USER
+      var config = {
+         method: "put",
+         url:
+            "http://localhost:8080/api/v1.0/tweets/" +
+            appState.user.loginId +
+            "/like/" +
+            tweetData.id,
+         headers: {},
+      };
+
+      axios(config).then(function (response) {
+         console.log(JSON.stringify(response.data));
+         setTweetData(response.data);
+      });
    }
 
    function onReplyClick() {
