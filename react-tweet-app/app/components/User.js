@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function User(props) {
    const [userData, setUserData] = useState(props.data);
-   const [username, setUsername] = useState(userData.loginId);
+   const [username, setUsername] = useState(props.data.loginId);
+
+   useEffect(() => {
+      setUserData(props.data);
+      setUsername(props.data.loginId);
+   });
 
    return (
       <div
