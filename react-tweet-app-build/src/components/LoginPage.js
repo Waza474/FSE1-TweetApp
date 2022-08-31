@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useContext } from "react";
 import { Navigate, useNavigate, Link } from "react-router-dom";
+import { API_URL } from "../Constants";
 import DispatchContext from "../DispatchContext";
 
 function LoginPage() {
@@ -16,11 +17,7 @@ function LoginPage() {
 
       var config = {
          method: "get",
-         url:
-            "http://localhost:8080/api/v1.0/tweets/login?username=" +
-            username +
-            "&password=" +
-            password,
+         url: API_URL + "/login?username=" + username + "&password=" + password,
          headers: {},
       };
       var result = false;
@@ -39,9 +36,7 @@ function LoginPage() {
       } else {
          var config = {
             method: "get",
-            url:
-               "http://localhost:8080/api/v1.0/tweets/loginSuccess?username=" +
-               username,
+            url: API_URL + "/loginSuccess?username=" + username,
             headers: {},
          };
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import StateContext from "../StateContext";
+import { API_URL } from "../Constants";
 
 function ForgotPasswordPage() {
    const [email, setEmail] = useState("");
@@ -64,7 +65,7 @@ function ForgotPasswordPage() {
 
       var config = {
          method: "put",
-         url: "http://localhost:8080/api/v1.0/tweets/" + loginId + "/forgot/",
+         url: API_URL + loginId + "/forgot/",
          headers: {
             "Content-Type": "text/plain",
          },

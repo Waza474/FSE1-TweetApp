@@ -13,7 +13,7 @@ public class userRepositoryTest {
     @Autowired
     userRepository userRepo;
 
-    @Test
+    //@Test
     public void ifNewUserSaved_thenSuccess(){
         user newUser = new user("FTest" , "LTest", "test@test.com", "TestAcc", "pass", "001");
         int previousSize  = userRepo.findAll().size();

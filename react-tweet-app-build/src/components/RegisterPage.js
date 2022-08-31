@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../Constants";
 
 function RegisterPage() {
    const [firstName, setFirstName] = useState("");
@@ -62,12 +63,10 @@ function RegisterPage() {
       }
 
       try {
-         await axios
-            .post("http://localhost:8080/api/v1.0/tweets/register", newUser)
-            .then((res) => {
-               console.log(res);
-               console.log(res.data);
-            });
+         await axios.post(API_URL + "/register", newUser).then((res) => {
+            console.log(res);
+            console.log(res.data);
+         });
 
          navigate("/registered");
       } catch (e) {

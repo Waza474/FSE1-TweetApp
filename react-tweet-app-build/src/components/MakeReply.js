@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import StateContext from "../StateContext";
+import { API_URL } from "../Constants";
 
 function MakeReply(props) {
    const [content, setContent] = useState("");
@@ -20,11 +21,7 @@ function MakeReply(props) {
 
       if (newTweet.content == null) return;
 
-      const target =
-         "http://localhost:8080/api/v1.0/tweets/" +
-         newTweet.ownerId +
-         "/reply/" +
-         props.tweetId;
+      const target = API_URL + newTweet.ownerId + "/reply/" + props.tweetId;
 
       await axios.post(target, newTweet).then((res) => {
          console.log("Tweet Created");

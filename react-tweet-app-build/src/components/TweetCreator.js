@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
 import StateContext from "../StateContext";
+import { API_URL } from "../Constants";
 
 function TweetCreator(props) {
    const [content, setContent] = useState("");
@@ -32,8 +33,7 @@ function TweetCreator(props) {
 
       console.log(newTweet);
 
-      const target =
-         "http://localhost:8080/api/v1.0/tweets/" + newTweet.ownerId + "/add";
+      const target = API_URL + "/" + newTweet.ownerId + "/add";
       try {
          await axios.post(target, newTweet).then((res) => {
             console.log("Tweet Created");

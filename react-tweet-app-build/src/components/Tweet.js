@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import StateContext from "../StateContext";
 import axios from "axios";
 import MakeReply from "./MakeReply";
+import { API_URL } from "../Constants";
 
 function Tweet(props) {
    var time = new Date();
@@ -47,11 +48,7 @@ function Tweet(props) {
       // POTENTIALLY REWORD AS IT DEPENDS ON USER
       var config = {
          method: "put",
-         url:
-            "http://localhost:8080/api/v1.0/tweets/" +
-            appState.user.loginId +
-            "/like/" +
-            tweetData.id,
+         url: API_URL + appState.user.loginId + "/like/" + tweetData.id,
          headers: {},
       };
 
@@ -90,11 +87,7 @@ function Tweet(props) {
    async function onDeleteTweet(e) {
       var config = {
          method: "delete",
-         url:
-            "http://localhost:8080/api/v1.0/tweets/" +
-            tweetData.ownerId +
-            "/delete/" +
-            tweetData.id,
+         url: API_URL + tweetData.ownerId + "/delete/" + tweetData.id,
          headers: {},
       };
 
@@ -117,7 +110,7 @@ function Tweet(props) {
 
       var config = {
          method: "put",
-         url: "http://localhost:8080/api/v1.0/tweets/X/update/Y",
+         url: API_URL + "/X/update/Y",
          headers: {},
          data: data,
       };

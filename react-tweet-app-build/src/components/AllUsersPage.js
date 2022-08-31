@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import User from "./User";
+import { API_URL } from "../Constants";
 
 function AllUsersPage() {
    const [search, setSearch] = useState("");
@@ -10,7 +11,7 @@ function AllUsersPage() {
       if (search == "") {
          var config = {
             method: "get",
-            url: "http://localhost:8080/api/v1.0/tweets/users/all",
+            url: API_URL + "/users/all",
             headers: {},
          };
 
@@ -22,7 +23,7 @@ function AllUsersPage() {
          console.log("Searching...");
          var config = {
             method: "get",
-            url: "http://localhost:8080/api/v1.0/tweets/user/search/" + search,
+            url: API_URL + "/user/search/" + search,
             headers: {},
          };
 

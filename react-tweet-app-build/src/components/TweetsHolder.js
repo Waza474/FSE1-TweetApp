@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Tweet from "./Tweet";
 import StateContext from "../StateContext";
+import { API_URL } from "../Constants";
 
 function TweetsHolder({ childFunc }) {
    const appState = useContext(StateContext);
@@ -12,7 +13,7 @@ function TweetsHolder({ childFunc }) {
    async function getTweeetsFromAPI() {
       var config = {
          method: "get",
-         url: "http://localhost:8080/api/v1.0/tweets/all",
+         url: API_URL + "/all",
          headers: {},
       };
 
