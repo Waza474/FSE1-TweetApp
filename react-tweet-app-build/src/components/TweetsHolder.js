@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Tweet from "./Tweet";
-import StateContext from "../StateContext";
+//import StateContext from "../StateContext";
 import { API_URL } from "../Constants";
 
 function TweetsHolder({ childFunc }) {
-   const appState = useContext(StateContext);
+   //const appState = useContext(StateContext);
 
    const [tweets, setTweets] = useState([]);
    const [a, setA] = useState(true);
@@ -36,25 +36,23 @@ function TweetsHolder({ childFunc }) {
       childFunc.current = NewTweetCreated;
    }, []);
 
-   function testfunc2(msg) {
-      console.log(msg);
-   }
-
    function NewTweetCreated() {
       getTweeetsFromAPI();
    }
 
+   /*
    const testTweets = [
       { content: "Apple", likes: 10, ownerId: "CatDog" },
       { content: "Cherry", likes: 4, ownerId: "Sonic" },
       { content: "Grape", likes: 12, ownerId: "Mouse" },
    ];
+   */
 
    return (
       <div>
          {tweets.map(
             (twe) =>
-               twe.type == "root" && (
+               twe.type === "root" && (
                   <Tweet
                      data={twe}
                      type={"main"}

@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useContext } from "react";
-import { Navigate, useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { API_URL } from "../Constants";
 import DispatchContext from "../DispatchContext";
 
@@ -34,7 +34,7 @@ function LoginPage() {
          document.getElementById("lbPass").style.setProperty("color", "red");
          document.getElementById("lbWrong").style.setProperty("color", "red");
       } else {
-         var config = {
+         config = {
             method: "get",
             url: API_URL + "/loginSuccess?username=" + username,
             headers: {},

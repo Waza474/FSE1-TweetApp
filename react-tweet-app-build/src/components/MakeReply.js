@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import StateContext from "../StateContext";
 import { API_URL } from "../Constants";
@@ -13,7 +13,7 @@ function MakeReply(props) {
       e.preventDefault(e);
 
       const newTweet = {
-         content: content == "" ? null : content,
+         content: content === "" ? null : content,
          ownerId: appState.user.loginId,
       };
 

@@ -6,7 +6,7 @@ import { API_URL } from "../Constants";
 function TweetCreator(props) {
    const [content, setContent] = useState("");
    const [tag, setTag] = useState("");
-   const [taBorderColor, setTaBorderColor] = useState("white");
+   //const [taBorderColor, setTaBorderColor] = useState("white");
 
    const appState = useContext(StateContext);
 
@@ -15,19 +15,21 @@ function TweetCreator(props) {
       fontSize: ".75em",
    };
 
+   /*
    const style2 = {
       height: "90px",
       fontSize: ".75em",
       borderColor: taBorderColor,
       borderWidth: "2px",
    };
+   */
 
    async function onSubmit(e) {
       e.preventDefault();
 
       const newTweet = {
-         content: content == "" ? null : content,
-         tag: tag == "" ? null : tag,
+         content: content === "" ? null : content,
+         tag: tag === "" ? null : tag,
          ownerId: appState.user.loginId,
       };
 
@@ -57,12 +59,10 @@ function TweetCreator(props) {
                   .style.setProperty("borderWidth", "4");
                   */
                break;
+            default:
+               break;
          }
       }
-   }
-
-   function testfunc() {
-      console.log("test");
    }
 
    return (

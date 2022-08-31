@@ -8,7 +8,7 @@ function AllUsersPage() {
    const [results, setResults] = useState([]);
 
    useEffect(() => {
-      if (search == "") {
+      if (search === "") {
          var config = {
             method: "get",
             url: API_URL + "/users/all",
@@ -21,7 +21,7 @@ function AllUsersPage() {
          });
       } else {
          console.log("Searching...");
-         var config = {
+         config = {
             method: "get",
             url: API_URL + "/user/search/" + search,
             headers: {},

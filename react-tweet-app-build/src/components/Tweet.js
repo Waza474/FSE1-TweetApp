@@ -5,8 +5,8 @@ import MakeReply from "./MakeReply";
 import { API_URL } from "../Constants";
 
 function Tweet(props) {
-   var time = new Date();
-   time = time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
+   //var time = new Date();
+   //time = time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
 
    const appState = useContext(StateContext);
 
@@ -19,6 +19,8 @@ function Tweet(props) {
    const [editStatus, setEditStatus] = useState(false);
    const [editText, setEditText] = useState(tweetData.content);
 
+   // Placeholder Items used during developement
+   /*
    const tweetExample = {
       content: "",
       tag: "",
@@ -26,12 +28,15 @@ function Tweet(props) {
       likes: "",
       replies: "",
    };
+   
 
    const testReplies = [
       { content: "Apple", likes: 10, ownerId: "CatDog" },
       { content: "Cherry", likes: 4, ownerId: "Sonic" },
       { content: "Grape", likes: 12, ownerId: "Mouse" },
    ];
+
+   */
 
    function onRepliesClick() {
       setShowReplies(!showReplies);
@@ -99,7 +104,7 @@ function Tweet(props) {
    }
 
    async function onEditTweet(e) {
-      if (tweetData.content == editText) {
+      if (tweetData.content === editText) {
          console.log("No changes noted, not updating");
          setEditStatus(!editStatus);
          return;
@@ -126,7 +131,7 @@ function Tweet(props) {
    return (
       <div
          style={
-            props.type == "main"
+            props.type === "main"
                ? { paddingBottom: "20px" }
                : {
                     paddingBottom: "20px",
@@ -142,7 +147,8 @@ function Tweet(props) {
                   src={
                      "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
                   }
-               />
+                  alt="alt"
+               ></img>
             </div>
             <div className="col">
                <div className="row" style={{ paddingTop: "5px" }}>
@@ -166,14 +172,14 @@ function Tweet(props) {
                   >
                      {timeCreated}
                   </div>
-                  {appState.user.loginId == tweetData.ownerId && (
+                  {appState.user.loginId === tweetData.ownerId && (
                      <div style={{ paddingRight: "5px", fontSize: "0.7em" }}>
                         <button onClick={(e) => onDeleteTweet(e)}>
                            Delete Tweet
                         </button>
                      </div>
                   )}
-                  {appState.user.loginId == tweetData.ownerId &&
+                  {appState.user.loginId === tweetData.ownerId &&
                      (!editStatus ? (
                         <div style={{ paddingRight: "5px", fontSize: "0.7em" }}>
                            <button onClick={() => setEditStatus(!editStatus)}>

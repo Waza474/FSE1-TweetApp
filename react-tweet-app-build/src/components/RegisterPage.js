@@ -15,7 +15,7 @@ function RegisterPage() {
    function validationCheck_Password(e) {
       const name = e.target.name;
       const value = e.target.value;
-      if (name == "password") {
+      if (name === "password") {
          setPassword(value);
       } else {
          setConfirm(value);
@@ -23,7 +23,7 @@ function RegisterPage() {
 
       console.log("CHANGE: " + password + "  " + confirm);
 
-      if (password != confirm) {
+      if (password !== confirm) {
          document
             .getElementById("lbPassword")
             .style.setProperty("color", "red");
@@ -48,17 +48,17 @@ function RegisterPage() {
       e.preventDefault();
 
       const newUser = {
-         firstName: firstName == "" ? null : firstName,
-         lastName: lastName == "" ? null : lastName,
-         email: email == "" ? null : email,
-         loginId: loginId == "" ? null : loginId,
-         password: password == "" ? null : password,
-         contactNumber: contactNumber == "" ? null : contactNumber,
+         firstName: firstName === "" ? null : firstName,
+         lastName: lastName === "" ? null : lastName,
+         email: email === "" ? null : email,
+         loginId: loginId === "" ? null : loginId,
+         password: password === "" ? null : password,
+         contactNumber: contactNumber === "" ? null : contactNumber,
       };
 
       console.log(newUser);
 
-      if (password != confirm) {
+      if (password !== confirm) {
          return;
       }
 
@@ -80,6 +80,8 @@ function RegisterPage() {
             case 400:
                console.log("ENTER STUFF");
                handleEmptyFields();
+               break;
+            default:
                break;
          }
       }

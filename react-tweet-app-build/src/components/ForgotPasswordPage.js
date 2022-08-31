@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import StateContext from "../StateContext";
 import { API_URL } from "../Constants";
 
 function ForgotPasswordPage() {
-   const [email, setEmail] = useState("");
+   //const [email, setEmail] = useState("");
    const [loginId, setLoginId] = useState("");
    const [password, setPassword] = useState("");
    const [confirm, setConfirm] = useState("");
@@ -14,7 +13,7 @@ function ForgotPasswordPage() {
    function validationCheck_Password(e) {
       const name = e.target.name;
       const value = e.target.value;
-      if (name == "password") {
+      if (name === "password") {
          setPassword(value);
       } else {
          setConfirm(value);
@@ -22,7 +21,7 @@ function ForgotPasswordPage() {
 
       console.log("CHANGE: " + password + "  " + confirm);
 
-      if (password != confirm) {
+      if (password !== confirm) {
          dispPassReq();
       } else {
          document
@@ -55,10 +54,10 @@ function ForgotPasswordPage() {
    async function onSubmit(e) {
       e.preventDefault();
 
-      if (password != confirm) return;
+      if (password !== confirm) return;
 
       console.log("User does not exist");
-      if (loginId == "" || loginId == null) {
+      if (loginId === "" || loginId == null) {
          dispRequired();
          return;
       }
