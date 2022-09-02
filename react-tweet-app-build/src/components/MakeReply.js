@@ -21,7 +21,8 @@ function MakeReply(props) {
 
       if (newTweet.content == null) return;
 
-      const target = API_URL + newTweet.ownerId + "/reply/" + props.tweetId;
+      const target =
+         API_URL + "/" + newTweet.ownerId + "/reply/" + props.tweetId;
 
       await axios.post(target, newTweet).then((res) => {
          console.log("Tweet Created");

@@ -53,7 +53,7 @@ function Tweet(props) {
       // POTENTIALLY REWORD AS IT DEPENDS ON USER
       var config = {
          method: "put",
-         url: API_URL + appState.user.loginId + "/like/" + tweetData.id,
+         url: API_URL + "/" + appState.user.loginId + "/like/" + tweetData.id,
          headers: {},
       };
 
@@ -92,7 +92,7 @@ function Tweet(props) {
    async function onDeleteTweet(e) {
       var config = {
          method: "delete",
-         url: API_URL + tweetData.ownerId + "/delete/" + tweetData.id,
+         url: API_URL + "/" + tweetData.ownerId + "/delete/" + tweetData.id,
          headers: {},
       };
 
