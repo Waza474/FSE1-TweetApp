@@ -1,5 +1,9 @@
 # FSE1-TweetApp
 
+NOTE! Currently the program is configured to run on the cloud.
+Accesible with the following link: http://pavle-tweetapp-frontend.s3-website-ap-southeast-2.amazonaws.com
+
+
 Tweet app for the FSE-1 Accreditation.
 
 To run backend, open the fseTweetApp folder/project in IDE, this IDE used in developement was IntelliJ IDEA CE 2020.
