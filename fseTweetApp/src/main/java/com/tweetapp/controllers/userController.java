@@ -11,7 +11,8 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1.0/tweets")
 @Log4j2
-@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://pavle-tweetapp-frontend.s3-website-ap-southeast-2.amazonaws.com")
 public class userController {
 
     @Autowired
