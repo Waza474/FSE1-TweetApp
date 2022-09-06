@@ -1,7 +1,15 @@
 # FSE1-TweetApp
 
+!!!!!
 NOTE! Currently the program is configured to run on the cloud.
 Accesible with the following link: http://pavle-tweetapp-frontend.s3-website-ap-southeast-2.amazonaws.com
+!!!!!
+
+!!
+To be able to run on the local host, change the the cross origin in the TweetController and UserController to the local host option thats commented out.
+For front end, navigate to the constants file and change/swap which API_URL is commented out.
+Then complete the below Steps
+!!
 
 
 Tweet app for the FSE-1 Accreditation.
