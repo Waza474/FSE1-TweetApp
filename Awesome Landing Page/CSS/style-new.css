@@ -1,0 +1,263 @@
+html {
+    font-family: "Lato", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+body {
+    background-color: #e4e3d3;
+    margin: 0;
+}
+
+p {
+    color: #708c99;
+    font-size: 16px;
+    line-height: 24px;
+    font-family: "Lato", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+header {
+    background-color: #e4e3d3;
+    height: 80px;
+}
+
+#header-container {
+    width: 75%;
+    margin: auto;
+}
+
+.col-3 {
+    width: 33%;
+    float: left;
+}
+
+.logo {
+    padding-top: 30px;
+}
+
+.menu {
+    margin-top: 32px;
+    text-align: center;
+}
+
+.menu li {
+    list-style-type: none;
+    display: inline;
+    font-size: .85em;
+    color: #586f7c;
+    padding-right: 30px;
+}
+
+.getStartedBTN {
+    background-color: #ed254e;
+    border-radius: 28px;
+    -moz-border-radius: 28px;
+    -webkit-border-radius: 28px;
+    text-decoration: none;
+    color: #e4e3d3;
+    padding: 10px 26px;
+    margin-top: 20px;
+    display: inline-block;
+    font-size: 17px;
+    float: right;
+}
+
+#top-section-main {
+    background-image: url(../Images/friends.jpg);
+    height: 740px;
+    border: none;
+}
+
+#top-section-content {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+}
+
+#top-section-content h1 {
+    font-size: 4em;
+    font-weight: 300;
+    color: #e4e3d3;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding-top: 100px;
+}
+
+#top-section-content p {
+    font-size: 1.3em;
+    font-weight: 400;
+    color: #e4e3d3;
+    text-align: center;
+}
+
+.play-button {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    padding: 50px 0 110px 0;
+}
+
+.main-form h6 {
+    font-family: sans-serif;
+    font-size: .9em;
+    font-weight: 100;
+    color: #e4e3d3;
+    text-align: center;
+}
+
+.main-form input {
+    margin: 0;
+    width: 30%;
+    height: 40px;
+    border: none;
+    font-family: sans-serif;
+    font-size: 15px;
+    padding-left: 15px;
+    font-weight: 100;
+    
+}
+
+.main-form button {
+    width: 30%;
+    height: 42px;
+    background-color: #ed254e;
+    font-family: sans-serif;
+    font-size: 15px;
+    padding-left: 15px;
+    font-weight: 100;
+    color: #e4e3d3;
+    border: none;
+    
+}
+
+#feature-section {
+    padding-top: 100px;
+}
+
+.feature-section-title {
+    width: 70%;
+    text-align: center;
+    font-weight: 200;
+    margin: auto;
+    line-height: 1.5em;
+    
+}
+
+.feature-content {
+    margin: auto;
+    width: 80%;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.feature-content .col-3 img {
+    width: 100%;
+}
+
+.feature-content .col-3 p {
+    font-size: .9em;
+    letter-spacing: 1px
+}
+
+.feature-content .col-3 {
+    padding: 10px;
+    width: 30%;
+}
+
+
+.col-2 {
+    float: left;
+    width: 48%;
+}
+
+#showcase1-container {
+    padding-top: 60px;
+    background-color: #2e933c;
+    width: 100%;
+    clear:both;
+    
+}
+
+
+.showcase {
+    width: 80%;
+    margin: auto;
+    overflow: auto;
+}
+
+.showcase1-picture  {
+    width = 100%;
+}
+
+.showcase-text {
+    width: 60%;
+    padding-left: 50px;
+    padding-top: 300px;
+}
+
+.section-title {
+    width: 70%;
+    margin: auto;
+    font-weight: 200;
+    line-height: 1.5em;
+}
+
+.section-left {
+    width: 70%;
+    padding: 10px;
+    font-weight: 500;
+    margin: auto;
+    color: #e4e3d3;
+}
+
+#showcase2-container {
+    padding-top: 60px;
+    background-color: #f87060;
+    width: 100%;
+    clear:both;
+    
+}
+
+#call-to-action {
+    background-image: url(../Images/darkdesk.png);
+    background-position: 50% 50%;
+    width: 
+    
+}
+
+.col-1 {
+    width: 80%;
+    margin: auto;
+}
+
+.action-title {
+    font-size: 4em;
+    font-weight: 300;
+    color: #e4e3d3;
+    text-align: center;
+    margin-top: 0;
+    padding-top: 100px;
+}
+
+.col-1 p{
+    color: #e4e3d3;
+    text-align: center;
+    font-size: 1.6em;
+    font-weight: 300;
+    margin: 0;
+    padding-bottom: 110px;
+    
+}
+
+.action-button {
+    background-color: #ed254e;
+    color: #e4e3d3;
+    font-size: 1em;
+    font-weight: 200;
+    text-decoration: none;
+    padding: 30px 80px;
+}
+
+.action-button:hover {
+    background-color: #970c28;
+}
